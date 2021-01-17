@@ -1,12 +1,10 @@
 package com.example.ecommerce.services.impl;
 
-import com.example.ecommerce.model.MerchantInventory;
 import com.example.ecommerce.model.MerchantStock;
 import com.example.ecommerce.repository.MerchantInventoryRepository;
 import com.example.ecommerce.repository.MerchantStockRepository;
 import com.example.ecommerce.services.MerchantStockService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

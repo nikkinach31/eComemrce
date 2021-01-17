@@ -13,6 +13,9 @@ public class MerchantInventoryController {
 
     @Autowired
     MerchantInventoryService merchantInventoryService;
+//
+//    @Autowired
+//    KafkaTemplate<String, MerchantInventory> kafkaTemplate;
 
     @GetMapping(value = "/{productId}")
     public MerchantInventory findById(@PathVariable("productId") int id) {
@@ -26,6 +29,7 @@ public class MerchantInventoryController {
 
     @DeleteMapping(value = "/delete/{inventoryId}")
     public void deleteById(@PathVariable("inventoryId") int id) {
+        //kafkaTemplate.send("product", findById(id));
         merchantInventoryService.deleteById(id);
     }
 

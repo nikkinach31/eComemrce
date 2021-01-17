@@ -1,6 +1,5 @@
 package com.example.ecommerce.services;
 
-import com.example.ecommerce.model.Merchant;
 import com.example.ecommerce.model.MerchantInventory;
 
 import java.util.List;

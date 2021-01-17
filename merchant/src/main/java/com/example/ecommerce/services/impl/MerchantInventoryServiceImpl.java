@@ -6,7 +6,6 @@ import com.example.ecommerce.repository.MerchantInventoryRepository;
 import com.example.ecommerce.repository.MerchantStockRepository;
 import com.example.ecommerce.services.MerchantInventoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
@@ -18,17 +17,21 @@ public class MerchantInventoryServiceImpl implements MerchantInventoryService {
     MerchantInventoryRepository merchantInventoryRepository;
 
     @Autowired
-    KafkaTemplate<String, MerchantInventory> kafkaTemplate;
+    MerchantStockRepository merchantStockRepository;
+
+//    @Autowired
+//    KafkaTemplate<String, MerchantInventory> kafkaTemplate;
 
     @Autowired
-    MerchantStockRepository merchantStockRepository;
+    KafkaTemplate<String, String> kafkaTemplate;
 
     @Override
     public void save(MerchantInventory merchantInventory) {
-//        merchantInventory.getProductId();
         merchantInventoryRepository.save(merchantInventory);
         merchantInventory.setProductId();
-        kafkaTemplate.send("product", merchantInventory);
+//        String merchantInventoryString = merchantInventory.toString();
+//        kafkaTemplate.send("product", merchantInventory);
+        kafkaTemplate.send("product", "received");
         merchantStockRepository.save(new MerchantStock(merchantInventory.getId(), merchantInventory.getQuantity()));
     }
 
@@ -39,7 +42,6 @@ public class MerchantInventoryServiceImpl implements MerchantInventoryService {
 
     @Override
     public void deleteById(int id) {
-        kafkaTemplate.send("product", findById(id));
         merchantStockRepository.deleteById(id);
         merchantInventoryRepository.deleteById(id);
     }
