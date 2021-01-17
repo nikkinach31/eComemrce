@@ -5,6 +5,8 @@ import com.example.ecommerce.services.MerchantStockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/merchant/stock")
 public class MerchantStockController {
@@ -23,8 +25,28 @@ public class MerchantStockController {
         merchantStockService.deleteById(productId);
     }
 
-    @PostMapping(value = "/update/{inventoryId}/{stock}")
-    public void updateStock(@PathVariable("inventoryId") int inventoryInt, @PathVariable("stock") int stock) {
-        merchantStockService.updateStock(inventoryInt, stock);
+    @PostMapping(value = "/updatestock/{inventoryId}/{stock}")
+    public void updateStock(@PathVariable("inventoryId") int inventoryId, @PathVariable("stock") int stock) {
+        merchantStockService.updateStock(inventoryId, stock);
+    }
+
+    @PostMapping(value = "/update/itemssold/{inventoryId}/{itemsSold}")
+    public void updateItemsSold(@PathVariable("inventoryId") int inventoryId, @PathVariable("itemsSold") int itemsSold) {
+        merchantStockService.updateItemsSold(inventoryId, itemsSold);
+    }
+
+    @GetMapping(value = "/stock/{inventoryId}")
+    public int findStockById(@PathVariable("inventoryId") int id) {
+        return merchantStockService.findStockById(id);
+    }
+
+    @GetMapping(value = "/sort")
+    public List<MerchantStock> findByOrderByItemsSoldDesc() {
+        return merchantStockService.findByOrderByItemsSoldDesc();
+    }
+
+    @GetMapping(value = "/{merchantId}/{productId}")
+    public int findStockByMerchantIdAndProductId(@PathVariable("merchantId") int merchantId, @PathVariable("productId") int productId) {
+        return merchantStockService.findStockByMerchantIdAndProductId(merchantId, productId);
     }
 }

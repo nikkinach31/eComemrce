@@ -38,4 +38,9 @@ public class MerchantInventoryController {
     public void updatePrice(@PathVariable("inventoryId") int id, double price) {
         merchantInventoryService.updatePrice(id, price);
     }
+
+    @GetMapping(value = "/{merchantId}/{productId}")
+    MerchantInventory findByMerchantIdAndProductId(@PathVariable("merchantId") int merchantId, @PathVariable("productId") int productId) {
+        return merchantInventoryService.findByMerchantIdAndProductId(merchantId, productId);
+    }
 }

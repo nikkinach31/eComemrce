@@ -11,5 +11,6 @@ public interface MerchantStockService {
     void updateStock(int inventoryId, int stock);
     List<MerchantStock> findByOrderByItemsSoldDesc();
     int findStockById(int id);
-    //updateItemsSold
+    int findStockByMerchantIdAndProductId(int merchantId, int productId);
+    void updateItemsSold(int inventoryId, int itemsSold);
 }

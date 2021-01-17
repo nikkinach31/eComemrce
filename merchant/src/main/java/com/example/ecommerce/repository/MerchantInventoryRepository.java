@@ -11,5 +11,6 @@ import java.util.List;
 public interface MerchantInventoryRepository extends CrudRepository<MerchantInventory, Integer> {
 
     List<MerchantInventory> findByMerchantId(int merchantId);
+    MerchantInventory findByMerchantIdAndProductId(int merchantId, int productId);
 
 }

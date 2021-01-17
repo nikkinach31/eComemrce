@@ -54,4 +54,9 @@ public class MerchantInventoryServiceImpl implements MerchantInventoryService {
         findById(id).setPrice(price);
         merchantInventoryRepository.save(findById(id));
     }
+
+    @Override
+    public MerchantInventory findByMerchantIdAndProductId(int merchantId, int productId) {
+        return merchantInventoryRepository.findByMerchantIdAndProductId(merchantId, productId);
+    }
 }

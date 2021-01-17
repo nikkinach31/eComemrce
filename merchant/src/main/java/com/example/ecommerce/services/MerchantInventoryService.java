@@ -1,5 +1,6 @@
 package com.example.ecommerce.services;
 
+import com.example.ecommerce.model.Merchant;
 import com.example.ecommerce.model.MerchantInventory;
 
 import java.util.List;
@@ -10,4 +11,5 @@ public interface MerchantInventoryService {
     void deleteById(int id);
     List<MerchantInventory> findByMerchantId(int merchantId);
     void updatePrice(int id, double price);
+    MerchantInventory findByMerchantIdAndProductId(int merchantId, int productId);
 }
