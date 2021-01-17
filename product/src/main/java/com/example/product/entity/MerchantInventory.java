@@ -16,7 +16,7 @@ public class MerchantInventory {
     private  String memory;
     private int quantity;
     private double price;
-    //private byte[] productImage;
+    private String productImage;
 
     public int getId() {
         return id;
@@ -101,5 +101,13 @@ public class MerchantInventory {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public String getProductImage() {
+        return productImage;
+    }
+
+    public void setProductImage(String productImage) {
+        this.productImage = productImage;
     }
 }

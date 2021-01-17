@@ -14,7 +14,9 @@ public class Phone {
     private String modelName;
     private String camera;
     private String color;
-    private  String memory;
+    private String memory;
+    private double price;
+    private String productImage;
 
     public int getProductId()
     {
@@ -82,5 +84,21 @@ public class Phone {
     public void setMemory(String memory)
     {
         this.memory = memory;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getProductImage() {
+        return productImage;
+    }
+
+    public void setProductImage(String productImage) {
+        this.productImage = productImage;
     }
 }
