@@ -6,10 +6,8 @@ import com.example.cartordermicroservice.entity.Order;
 import com.example.cartordermicroservice.entity.OrderDetails;
 import com.example.cartordermicroservice.service.CheckoutService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,16 +18,6 @@ public class CheckoutController
 {
     @Autowired
     CheckoutService checkoutService;
-
-
-    //from Merchant Micro-service
-
-    int findStock(int mid, int pid)
-    {
-        //get api call from Merchant Micro-service
-       return 5000;
-    }
-
 
     @PostMapping
     public int checkout(@RequestBody Cart cartId)
@@ -46,7 +34,8 @@ public class CheckoutController
         for(CartItems cartItem : buyCartItems)
         {
             int itemQuantity = cartItem.getQuantity();
-            int stock = findStock(cartItem.getMerchantId(), cartItem.getProductId());
+            int stock = checkoutService.
+                    findStock(cartItem.getMerchantId(), cartItem.getProductId());
             if(itemQuantity>stock)
             {
                 return 2;
@@ -67,6 +56,7 @@ public class CheckoutController
             orderDetail.setQuantity(cartItem.getQuantity());
             newOrderDetails.add(orderDetail);
         }
+        newOrder.setOrderDate(java.time.LocalDate.now());
         newOrder.setExpenses(buyCart.getExpenses());
         newOrder.setOrderDetails(newOrderDetails);
         checkoutService.addToOrders(newOrder);

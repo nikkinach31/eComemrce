@@ -14,4 +14,6 @@ public interface CheckoutService
     Cart getCartById(int cartId);
 
     public void addToOrders(Order newOrder);
+
+    int findStock(int mid, int pid);
 }

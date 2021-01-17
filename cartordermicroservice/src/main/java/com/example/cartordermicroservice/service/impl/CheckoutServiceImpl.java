@@ -9,6 +9,7 @@ import com.example.cartordermicroservice.repository.OrderRepository;
 import com.example.cartordermicroservice.service.CheckoutService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -31,5 +32,18 @@ public class CheckoutServiceImpl implements CheckoutService
     public void addToOrders(Order newOrder)
     {
         orderRepository.save(newOrder);
+    }
+
+    @Override
+    public int findStock(int mid, int pid)
+    {
+        //get api call from Merchant Micro-service
+
+        final String uri = "http://localhost:9000/merchant/stock/"+mid+"/"+pid;
+        RestTemplate restTemplate = new RestTemplate();
+        int stock = restTemplate.getForObject(uri, Integer.class);
+
+
+        return stock;
     }
 }

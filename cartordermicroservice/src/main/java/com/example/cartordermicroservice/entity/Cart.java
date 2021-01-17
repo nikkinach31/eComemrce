@@ -18,8 +18,6 @@ public class Cart
     private int userId;
     private double expenses;
 
-
-
     @OneToMany(cascade = {CascadeType.ALL})
     @JoinColumn(name = "cart_id")
     private List<CartItems>  items;

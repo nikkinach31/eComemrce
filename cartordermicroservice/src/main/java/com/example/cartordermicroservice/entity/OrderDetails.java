@@ -18,17 +18,7 @@ public class OrderDetails
     private int merchantId;
     private double price;
     private int quantity;
-    private String imageURL;
 
-    public String getImageURL()
-    {
-        return imageURL;
-    }
-
-    public void setImageURL(String imageURL)
-    {
-        this.imageURL = imageURL;
-    }
 
     public int getOderIdDet()
     {

@@ -3,7 +3,9 @@ package com.example.cartordermicroservice.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -17,6 +19,7 @@ public class Order
 
     private int userId;
     private double expenses;
+    private LocalDate orderDate;
 
     @OneToMany(cascade = {CascadeType.ALL})
     @JoinColumn(name = "order_id")
@@ -64,5 +67,15 @@ public class Order
     public void setExpenses(double expenses)
     {
         this.expenses = expenses;
+    }
+
+    public LocalDate getOrderDate()
+    {
+        return orderDate;
+    }
+
+    public void setOrderDate(LocalDate orderDate)
+    {
+        this.orderDate = orderDate;
     }
 }

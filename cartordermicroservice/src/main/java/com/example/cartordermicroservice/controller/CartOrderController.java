@@ -9,7 +9,6 @@ import com.example.cartordermicroservice.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-
 @RestController
 @RequestMapping(value = "/cart") //enter value based on API
 public class CartOrderController
