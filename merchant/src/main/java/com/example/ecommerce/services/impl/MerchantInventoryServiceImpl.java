@@ -19,19 +19,15 @@ public class MerchantInventoryServiceImpl implements MerchantInventoryService {
     @Autowired
     MerchantStockRepository merchantStockRepository;
 
-//    @Autowired
-//    KafkaTemplate<String, MerchantInventory> kafkaTemplate;
-
     @Autowired
-    KafkaTemplate<String, String> kafkaTemplate;
+    KafkaTemplate<String, MerchantInventory> kafkaTemplate;
 
     @Override
     public void save(MerchantInventory merchantInventory) {
         merchantInventoryRepository.save(merchantInventory);
         merchantInventory.setProductId();
 //        String merchantInventoryString = merchantInventory.toString();
-//        kafkaTemplate.send("product", merchantInventory);
-        kafkaTemplate.send("product", "received");
+        kafkaTemplate.send("product", merchantInventory);
         merchantStockRepository.save(new MerchantStock(merchantInventory.getId(), merchantInventory.getQuantity()));
     }
 
