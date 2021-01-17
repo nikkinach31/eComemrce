@@ -31,7 +31,7 @@ public class MerchantInventoryServiceImpl implements MerchantInventoryService {
 //        String merchantInventoryString = merchantInventory.toString();
         ObjectMapper mapper = new ObjectMapper();
         kafkaTemplate.send("product", mapper.writeValueAsString(merchantInventory));
-        merchantStockRepository.save(new MerchantStock(merchantInventory.getId(), merchantInventory.getQuantity()));
+        merchantStockRepository.save(new MerchantStock(merchantInventory.getId(), merchantInventory.getProductId(), merchantInventory.getQuantity()));
     }
 
     @Override

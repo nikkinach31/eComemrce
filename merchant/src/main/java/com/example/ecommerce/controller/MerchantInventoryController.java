@@ -2,6 +2,7 @@ package com.example.ecommerce.controller;
 
 import com.example.ecommerce.model.MerchantInventory;
 import com.example.ecommerce.services.MerchantInventoryService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,7 +35,7 @@ public class MerchantInventoryController {
     }
 
     @PostMapping(value = "/add")
-    public void save(@RequestBody MerchantInventory merchantInventory) {
+    public void save(@RequestBody MerchantInventory merchantInventory) throws JsonProcessingException {
         merchantInventoryService.save(merchantInventory);
     }
 

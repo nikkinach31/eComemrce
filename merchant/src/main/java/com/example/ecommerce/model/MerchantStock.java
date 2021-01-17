@@ -13,6 +13,7 @@ public class MerchantStock implements Serializable {
     @Id
     private int inventoryId;
 
+    private int productId;
     private int stock;
     private int itemsSold;
 
@@ -20,8 +21,9 @@ public class MerchantStock implements Serializable {
     }
 
     @Autowired
-    public MerchantStock(int inventoryId, int quantity) {
+    public MerchantStock(int inventoryId, int productId, int quantity) {
         this.inventoryId = inventoryId;
+        this.productId = productId;
         this.stock = quantity;
         this.itemsSold = 0;
     }
@@ -48,5 +50,13 @@ public class MerchantStock implements Serializable {
 
     public void setItemsSold(int itemsSold) {
         this.itemsSold = itemsSold;
+    }
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 }

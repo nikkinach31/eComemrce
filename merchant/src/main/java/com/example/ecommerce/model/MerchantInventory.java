@@ -31,7 +31,7 @@ public class MerchantInventory implements Serializable {
     private  String memory;
     private int quantity;
     private double price;
-    //private byte[] productImage;
+    private String productImage;
 
     public int getId() {
         return id;
@@ -118,12 +118,11 @@ public class MerchantInventory implements Serializable {
         this.price = price;
     }
 
-//    public byte[] getProductImage() {
-//        return productImage;
-//    }
-//
-//    public void setProductImage(byte[] product_image) {
-//        this.productImage = product_image;
-//    }
+    public String getProductImage() {
+        return productImage;
+    }
 
+    public void setProductImage(String productImage) {
+        this.productImage = productImage;
+    }
 }

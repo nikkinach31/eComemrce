@@ -4,7 +4,10 @@ import com.example.ecommerce.model.MerchantStock;
 import com.example.ecommerce.repository.MerchantInventoryRepository;
 import com.example.ecommerce.repository.MerchantStockRepository;
 import com.example.ecommerce.services.MerchantStockService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +19,9 @@ public class MerchantStockServiceImpl implements MerchantStockService {
 
     @Autowired
     MerchantInventoryRepository merchantInventoryRepository;
+
+    @Autowired
+    KafkaTemplate<String, String> kafkaTemplate;
 
     @Override
     public MerchantStock save(MerchantStock merchantStock) {
@@ -49,8 +55,12 @@ public class MerchantStockServiceImpl implements MerchantStockService {
     }
 
     @Override
-    public List<MerchantStock> findByOrderByItemsSoldDesc() {
-        return merchantStockRepository.findByOrderByItemsSoldDesc();
+    public void findByOrderByItemsSoldDesc() throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        List<MerchantStock> merchantStocks =  merchantStockRepository.findByOrderByItemsSoldDesc();
+        for (int i = 0; i < 20; i++) {
+            kafkaTemplate.send("stock", mapper.writeValueAsString(merchantStocks.get(i)));
+        }
     }
 
     @Override
