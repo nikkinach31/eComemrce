@@ -11,5 +11,5 @@ public interface PhoneService {
     Phone findById(int id);
     Phone getByProductId(int id);
     void insert(String merchantInventory) throws JsonProcessingException;
-    List<PhoneHomepage> findProductByItemsSold(String merchantStocksString) throws JsonProcessingException;
+    List<PhoneHomepage> findProductByItemsSold() throws JsonProcessingException;
 }

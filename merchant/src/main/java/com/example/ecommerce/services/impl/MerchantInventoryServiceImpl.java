@@ -29,7 +29,6 @@ public class MerchantInventoryServiceImpl implements MerchantInventoryService {
     public void save(MerchantInventory merchantInventory) throws JsonProcessingException {
         merchantInventoryRepository.save(merchantInventory);
         merchantInventory.setProductId();
-//        String merchantInventoryString = merchantInventory.toString();
         ObjectMapper mapper = new ObjectMapper();
         kafkaTemplate.send("product", mapper.writeValueAsString(merchantInventory));
         merchantStockRepository.save(new MerchantStock(merchantInventory.getId(), merchantInventory.getProductId(), merchantInventory.getQuantity()));

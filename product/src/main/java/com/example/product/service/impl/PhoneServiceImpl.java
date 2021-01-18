@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -25,7 +26,7 @@ public class PhoneServiceImpl implements PhoneService {
     ProductRepository productRepository;
 
     Logger logger = LoggerFactory.getLogger("log1");
-    List<Integer> merchantStocksProductIds = new ArrayList<Integer>();
+    List<PhoneHomepage> productHomepage = new ArrayList<>();
 
     @Override
     public Phone findById(int id) {
@@ -58,13 +59,14 @@ public class PhoneServiceImpl implements PhoneService {
     }
 
     @Override
-    @KafkaListener(topics = "stock", groupId = "${spring.kafka.consumer.group-id}", containerFactory = "kafkaListenerContainerFactory")
-    public List<PhoneHomepage> findProductByItemsSold(String merchantStocksString) throws JsonProcessingException {
-        ObjectMapper mapper = new ObjectMapper();
-        merchantStocksProductIds.add(mapper.readValue(merchantStocksString, MerchantStock.class).getProductId());
-        List<PhoneHomepage> productHomepage = new ArrayList<>();
+    public List<PhoneHomepage> findProductByItemsSold() {
+        RestTemplate restTemplate = new RestTemplate();
+        String sortAPI = "http://localhost:9000/merchant/stock/sort";
+        ResponseEntity<MerchantStock[]> response = restTemplate.getForEntity(sortAPI, MerchantStock[].class);
+        MerchantStock[] merchantStockLists = response.getBody();
+
         for (int i = 0; i < 20; i++) {
-            Phone phone = findById(merchantStocksProductIds.get(i));
+            Phone phone = getByProductId(merchantStockLists[i].getProductId());
             PhoneHomepage hPhone = new PhoneHomepage();
             hPhone.setProductId(phone.getProductId());
             hPhone.setName(phone.getName());

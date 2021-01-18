@@ -57,17 +57,8 @@ public class MerchantStockServiceImpl implements MerchantStockService {
 
     @Override
     public List<MerchantStock> findByOrderByItemsSoldDesc() throws JsonProcessingException {
-//        ObjectMapper mapper = new ObjectMapper();
         return merchantStockRepository.findByOrderByItemsSoldDesc();
-//        for (int i = 0; i < 20; i++) {
-//            kafkaTemplate.send("stock", mapper.writeValueAsString(merchantStocks.get(i)));
-//        }
     }
-//
-//    @Override
-//    public MerchantStock findByOrderByItemsSoldDesc() {
-//        return merchantStockRepository.findByItemsSold();
-//    }
 
     @Override
     public int findStockById(int id) {

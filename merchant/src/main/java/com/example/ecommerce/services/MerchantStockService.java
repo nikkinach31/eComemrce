@@ -11,7 +11,6 @@ public interface MerchantStockService {
     MerchantStock findById(int id);
     void updateStock(int inventoryId, int stock);
     List<MerchantStock> findByOrderByItemsSoldDesc() throws JsonProcessingException;
-//    MerchantStock findByOrderByItemsSoldDesc();
     int findStockById(int id);
     int findStockByMerchantIdAndProductId(int merchantId, int productId);
     void updateItemsSold(int inventoryId, int itemsSold);
