@@ -29,7 +29,7 @@ module.exports = {
   pages: {
     index: {
       entry: 'src/main.js',
-      title: 'Kumar Gaurav'
+      title: 'Phonezy'
     }
   }
 }
