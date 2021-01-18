@@ -1,5 +1,6 @@
 package com.example.ecommerce.services.impl;
 
+import com.example.ecommerce.model.Merchant;
 import com.example.ecommerce.model.MerchantStock;
 import com.example.ecommerce.repository.MerchantInventoryRepository;
 import com.example.ecommerce.repository.MerchantStockRepository;
@@ -55,13 +56,18 @@ public class MerchantStockServiceImpl implements MerchantStockService {
     }
 
     @Override
-    public void findByOrderByItemsSoldDesc() throws JsonProcessingException {
-        ObjectMapper mapper = new ObjectMapper();
-        List<MerchantStock> merchantStocks =  merchantStockRepository.findByOrderByItemsSoldDesc();
-        for (int i = 0; i < 20; i++) {
-            kafkaTemplate.send("stock", mapper.writeValueAsString(merchantStocks.get(i)));
-        }
+    public List<MerchantStock> findByOrderByItemsSoldDesc() throws JsonProcessingException {
+//        ObjectMapper mapper = new ObjectMapper();
+        return merchantStockRepository.findByOrderByItemsSoldDesc();
+//        for (int i = 0; i < 20; i++) {
+//            kafkaTemplate.send("stock", mapper.writeValueAsString(merchantStocks.get(i)));
+//        }
     }
+//
+//    @Override
+//    public MerchantStock findByOrderByItemsSoldDesc() {
+//        return merchantStockRepository.findByItemsSold();
+//    }
 
     @Override
     public int findStockById(int id) {

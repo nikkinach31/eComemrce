@@ -20,9 +20,7 @@ public class MerchantInventory implements Serializable {
 
     //these columns will have unique key,check for the constructs
     private int merchantId;
-
     private int productId;
-
     private String name;
     private String brand;
     private String modelName;

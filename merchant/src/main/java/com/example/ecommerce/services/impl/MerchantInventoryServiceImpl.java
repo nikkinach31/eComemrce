@@ -1,5 +1,6 @@
 package com.example.ecommerce.services.impl;
 
+import com.example.ecommerce.model.Merchant;
 import com.example.ecommerce.model.MerchantInventory;
 import com.example.ecommerce.model.MerchantStock;
 import com.example.ecommerce.repository.MerchantInventoryRepository;

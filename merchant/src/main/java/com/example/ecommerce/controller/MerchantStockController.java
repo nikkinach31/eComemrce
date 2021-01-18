@@ -1,7 +1,9 @@
 package com.example.ecommerce.controller;
 
+import com.example.ecommerce.model.Merchant;
 import com.example.ecommerce.model.MerchantStock;
 import com.example.ecommerce.services.MerchantStockService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,7 +43,7 @@ public class MerchantStockController {
     }
 
     @GetMapping(value = "/sort")
-    public List<MerchantStock> findByOrderByItemsSoldDesc() {
+    public List<MerchantStock> findByOrderByItemsSoldDesc() throws JsonProcessingException {
         return merchantStockService.findByOrderByItemsSoldDesc();
     }
 
