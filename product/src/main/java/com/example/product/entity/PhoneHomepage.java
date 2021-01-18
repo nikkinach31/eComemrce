@@ -1,7 +1,5 @@
 package com.example.product.entity;
 
-import javax.persistence.Id;
-
 public class PhoneHomepage {
     private int productId;
     private String name;

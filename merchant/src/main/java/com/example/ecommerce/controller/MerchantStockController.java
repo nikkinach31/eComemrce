@@ -1,6 +1,5 @@
 package com.example.ecommerce.controller;
 
-import com.example.ecommerce.model.Merchant;
 import com.example.ecommerce.model.MerchantStock;
 import com.example.ecommerce.services.MerchantStockService;
 import com.fasterxml.jackson.core.JsonProcessingException;

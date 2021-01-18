@@ -6,7 +6,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import java.util.List;
 
 public interface MerchantStockService {
-    MerchantStock save (MerchantStock merchantStock);
+    MerchantStock save(MerchantStock merchantStock);
     void deleteById(int id);
     MerchantStock findById(int id);
     void updateStock(int inventoryId, int stock);

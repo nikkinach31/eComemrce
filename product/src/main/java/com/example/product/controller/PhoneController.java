@@ -1,14 +1,10 @@
 package com.example.product.controller;
 
 import com.example.product.entity.Phone;
-import com.example.product.entity.PhoneHomepage;
 import com.example.product.service.PhoneService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,13 +15,23 @@ public class PhoneController {
     PhoneService phoneService;
 
     @GetMapping(value = "/{productId}")
-    Phone getByProductId(@PathVariable("productId") int id)
+    Phone findById(@PathVariable("productId") int id)
     {
-        return phoneService.getByProductId(id);
+        return phoneService.findById(id);
     }
 
     @GetMapping(value = "/homepage")
-    public List<PhoneHomepage> findProductByItemsSold() throws JsonProcessingException {
+    public List<Phone> findProductByItemsSold() throws JsonProcessingException {
         return phoneService.findProductByItemsSold();
+    }
+
+    @GetMapping(value = "/brand/{brand}")
+    public List<Phone> findProductByBrand(@PathVariable ("brand") String brand) {
+        return phoneService.findProductByBrand(brand);
+    }
+
+    @PostMapping(value = "/rating/{id}/{rating}")
+    public void updateRating(@PathVariable("id") int id, @PathVariable("rating") float rating) {
+        phoneService.updateRating(id, rating);
     }
 }

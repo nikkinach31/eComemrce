@@ -2,7 +2,6 @@ package com.example.ecommerce.model;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.annotation.processing.Generated;
 import javax.persistence.*;
 
 @Entity

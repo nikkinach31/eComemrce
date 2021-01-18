@@ -1,22 +1,31 @@
 package com.example.product.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "products")
 public class Phone {
     @Id
+    private int id;
     private int productId;
     private String name;
     private String brand;
-    private String modelName;
     private String camera;
     private String color;
     private String memory;
     private double price;
     private String productImage;
+    private Float rating;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getProductId()
     {
@@ -44,16 +53,6 @@ public class Phone {
     public void setBrand(String brand)
     {
         this.brand = brand;
-    }
-
-    public String getModelName()
-    {
-        return modelName;
-    }
-
-    public void setModelName(String modelName)
-    {
-        this.modelName = modelName;
     }
 
     public String getCamera()
@@ -100,5 +99,13 @@ public class Phone {
 
     public void setProductImage(String productImage) {
         this.productImage = productImage;
+    }
+
+    public Float getRating() {
+        return rating;
+    }
+
+    public void setRating(Float rating) {
+        this.rating = rating;
     }
 }
