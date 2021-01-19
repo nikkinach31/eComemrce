@@ -26,8 +26,8 @@ public class MerchantStockController {
         merchantStockService.deleteById(productId);
     }
 
-    @PostMapping(value = "/updatestock/{inventoryId}/{stock}")
-    public void updateStock(@PathVariable("inventoryId") int inventoryId, @PathVariable("stock") int stock) {
+    @PostMapping(value = "/updatestock/")
+    public void updateStock(@RequestParam("inventoryId") int inventoryId, @RequestParam("stock") int stock) {
         merchantStockService.updateStock(inventoryId, stock);
     }
 

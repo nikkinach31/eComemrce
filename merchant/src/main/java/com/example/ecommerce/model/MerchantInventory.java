@@ -26,7 +26,6 @@ public class MerchantInventory implements Serializable {
     private int quantity;
     private double price;
     private String productImage;
-    //private float rating;
 
     public int getId() {
         return id;
@@ -113,11 +112,4 @@ public class MerchantInventory implements Serializable {
         this.productImage = productImage;
     }
 
-//    public float getRating() {
-//        return rating;
-//    }
-//
-//    public void setRating(float rating) {
-//        this.rating = rating;
-//    }
 }
