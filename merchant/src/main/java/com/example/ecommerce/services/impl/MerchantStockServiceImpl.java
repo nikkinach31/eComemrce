@@ -64,7 +64,7 @@ public class MerchantStockServiceImpl implements MerchantStockService {
 
     @Override
     public int findStockByMerchantIdAndProductId(int merchantId, int productId) {
-        int inventoryId = merchantInventoryRepository.findByMerchantIdAndProductId(merchantId, productId).getId();
+        int inventoryId = merchantInventoryRepository.findFirstByMerchantIdAndProductId(merchantId, productId).getId();
         return findById(inventoryId).getStock();
     }
 }

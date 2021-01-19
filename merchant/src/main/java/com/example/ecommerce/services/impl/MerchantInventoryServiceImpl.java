@@ -68,7 +68,7 @@ public class MerchantInventoryServiceImpl implements MerchantInventoryService {
 
     @Override
     public MerchantInventory findByMerchantIdAndProductId(int merchantId, int productId) {
-        return merchantInventoryRepository.findByMerchantIdAndProductId(merchantId, productId);
+        return merchantInventoryRepository.findFirstByMerchantIdAndProductId(merchantId, productId);
     }
 
     @Override
