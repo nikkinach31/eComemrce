@@ -1,6 +1,5 @@
 package com.example.ecommerce.services.impl;
 
-import com.example.ecommerce.model.Merchant;
 import com.example.ecommerce.model.MerchantIdAndPrice;
 import com.example.ecommerce.model.MerchantInventory;
 import com.example.ecommerce.model.MerchantStock;
@@ -42,6 +41,7 @@ public class MerchantInventoryServiceImpl implements MerchantInventoryService {
 //        merchantInventory.setProductId();
         ObjectMapper mapper = new ObjectMapper();
         kafkaTemplate.send("product", mapper.writeValueAsString(merchantInventory));
+        kafkaTemplate.send("search", mapper.writeValueAsString(merchantInventory));
         merchantStockRepository.save(new MerchantStock(merchantInventory.getId(), merchantInventory.getProductId(), merchantInventory.getQuantity()));
     }
 
@@ -51,7 +51,9 @@ public class MerchantInventoryServiceImpl implements MerchantInventoryService {
     }
 
     @Override
-    public void deleteById(int id) {
+    public void deleteById(int id) throws JsonProcessingException{
+        ObjectMapper mapper = new ObjectMapper();
+        kafkaTemplate.send("delete", mapper.writeValueAsString(merchantInventoryRepository.findById(id)));
         merchantStockRepository.deleteById(id);
         merchantInventoryRepository.deleteById(id);
     }
@@ -69,7 +71,7 @@ public class MerchantInventoryServiceImpl implements MerchantInventoryService {
 
     @Override
     public MerchantInventory findByMerchantIdAndProductId(int merchantId, int productId) {
-        return merchantInventoryRepository.findByMerchantIdAndProductId(merchantId, productId);
+        return merchantInventoryRepository.findFirstByMerchantIdAndProductId(merchantId, productId);
     }
 
     @Override

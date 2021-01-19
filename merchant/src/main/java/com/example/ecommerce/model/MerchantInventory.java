@@ -1,10 +1,6 @@
 package com.example.ecommerce.model;
 
-import com.example.ecommerce.repository.MerchantInventoryRepository;
-import org.hibernate.annotations.Generated;
-import org.hibernate.annotations.GenerationTime;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -30,7 +26,6 @@ public class MerchantInventory implements Serializable {
     private int quantity;
     private double price;
     private String productImage;
-    //private float rating;
 
     public int getId() {
         return id;
@@ -117,11 +112,4 @@ public class MerchantInventory implements Serializable {
         this.productImage = productImage;
     }
 
-//    public float getRating() {
-//        return rating;
-//    }
-//
-//    public void setRating(float rating) {
-//        this.rating = rating;
-//    }
 }

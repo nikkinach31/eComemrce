@@ -14,19 +14,16 @@ public class MerchantController {
     @Autowired
     MerchantDetailsService merchantDetailsService;
 
-    @CrossOrigin(origins = "http://localhost:8082")
     @GetMapping(value = "/{merchantId}")
     public Merchant findById(@PathVariable("merchantId") int id) {
         return merchantDetailsService.findById(id);
     }
 
-    @CrossOrigin(origins = "http://localhost:8082")
     @GetMapping()
     public List<Merchant> findAll() {
         return merchantDetailsService.findAll();
     }
 
-    @CrossOrigin(origins = "http://localhost:8082")
     @PostMapping(value = "/merchant/add")
     public Merchant save(@RequestBody Merchant merchant) {
         return merchantDetailsService.save(merchant);

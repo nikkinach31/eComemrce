@@ -11,6 +11,7 @@ public interface MerchantInventoryRepository extends CrudRepository<MerchantInve
 
     List<MerchantInventory> findByMerchantId(int merchantId);
     MerchantInventory findByMerchantIdAndProductId(int merchantId, int productId);
+    MerchantInventory findFirstByMerchantIdAndProductId(int merchantId, int productId);
     List<MerchantInventory> findByBrand(String brand);
     List<MerchantInventory> findByProductId(int productId);
 

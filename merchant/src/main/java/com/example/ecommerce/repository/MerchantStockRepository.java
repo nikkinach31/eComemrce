@@ -1,7 +1,5 @@
 package com.example.ecommerce.repository;
 
-import com.example.ecommerce.model.Merchant;
-import com.example.ecommerce.model.MerchantInventory;
 import com.example.ecommerce.model.MerchantStock;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

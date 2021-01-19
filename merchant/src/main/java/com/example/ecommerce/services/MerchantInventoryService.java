@@ -9,7 +9,7 @@ import java.util.List;
 public interface MerchantInventoryService {
     void save(MerchantInventory merchantInventory) throws JsonProcessingException;
     MerchantInventory findById(int id);
-    void deleteById(int id);
+    void deleteById(int id) throws JsonProcessingException;
     List<MerchantInventory> findByMerchantId(int merchantId);
     void updatePrice(int id, double price);
     MerchantInventory findByMerchantIdAndProductId(int merchantId, int productId);
