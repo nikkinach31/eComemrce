@@ -41,8 +41,7 @@ public class MerchantStockServiceImpl implements MerchantStockService {
 
     @Override
     public void updateStock(int inventoryId, int stock) {
-        int newStock = findById(inventoryId).getStock() + stock;
-        findById(inventoryId).setStock(newStock);
+        findById(inventoryId).setStock(stock);
         merchantStockRepository.save(findById(inventoryId));
     }
 

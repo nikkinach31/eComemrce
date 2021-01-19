@@ -9,7 +9,8 @@ import java.util.List;
 
 public interface PhoneService {
     Phone findById(int id);
-    Phone getByProductId(int id);
     void insert(String merchantInventory) throws JsonProcessingException;
-    List<PhoneHomepage> findProductByItemsSold() throws JsonProcessingException;
+    List<Phone> findProductByItemsSold() throws JsonProcessingException;
+    List<Phone> findProductByBrand(String brand);
+    void updateRating(int id, float rating);
 }

@@ -1,5 +1,6 @@
 package com.example.ecommerce.model;
 
+import com.example.ecommerce.repository.MerchantInventoryRepository;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
 import org.hibernate.annotations.GenericGenerator;
@@ -23,18 +24,17 @@ public class MerchantInventory implements Serializable {
     private int productId;
     private String name;
     private String brand;
-    private String modelName;
     private String camera;
     private String color;
     private  String memory;
     private int quantity;
     private double price;
     private String productImage;
+    //private float rating;
 
     public int getId() {
         return id;
     }
-
 
     public int getMerchantId() {
         return merchantId;
@@ -48,8 +48,9 @@ public class MerchantInventory implements Serializable {
         return productId;
     }
 
-    public void setProductId() {
-        this.productId = Integer.parseInt(Integer.toString(id) + Integer.toString(merchantId));
+    public void setProductId(int productId) {
+//        this.productId = Integer.parseInt(Integer.toString(id) + Integer.toString(merchantId));
+        this.productId = productId;
     }
 
     public String getName() {
@@ -66,14 +67,6 @@ public class MerchantInventory implements Serializable {
 
     public void setBrand(String brand) {
         this.brand = brand;
-    }
-
-    public String getModelName() {
-        return modelName;
-    }
-
-    public void setModelName(String modelName) {
-        this.modelName = modelName;
     }
 
     public String getCamera() {
@@ -123,4 +116,12 @@ public class MerchantInventory implements Serializable {
     public void setProductImage(String productImage) {
         this.productImage = productImage;
     }
+
+//    public float getRating() {
+//        return rating;
+//    }
+//
+//    public void setRating(float rating) {
+//        this.rating = rating;
+//    }
 }

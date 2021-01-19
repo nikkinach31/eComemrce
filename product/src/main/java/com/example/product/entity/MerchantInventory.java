@@ -10,7 +10,6 @@ public class MerchantInventory {
 
     private String name;
     private String brand;
-    private String modelName;
     private String camera;
     private String color;
     private  String memory;
@@ -53,14 +52,6 @@ public class MerchantInventory {
 
     public void setBrand(String brand) {
         this.brand = brand;
-    }
-
-    public String getModelName() {
-        return modelName;
-    }
-
-    public void setModelName(String modelName) {
-        this.modelName = modelName;
     }
 
     public String getCamera() {
